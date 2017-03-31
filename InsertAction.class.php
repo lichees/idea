@@ -34,11 +34,24 @@ class InsertAction extends BaseAction{
 		    		$data['userPhone']=$value['0'];
 		    		$data['cid']=102;
 		    		$row=$m->add($data);
-		    		if ($row) {
-		    			echo "成功";
-		    		}else{
-		    			echo "失败";
-		    		}
+
+		    		$m2=M('yuexue.users');
+		    		$data2['loginName']='jh'.$value['0'].'_a';
+		    		$data2['loginSecret']=9999;
+		    		$data2['loginPwd']='7e3bb63f6e447bf1c9e4737c2d6a1a8b';
+		    		$data2['userName']=$value['1'];
+		    		$data2['userPhone']=$value['0'];
+		    		$data2['cid']=102;
+		    		$data2['yxprice']=999;
+		    		$row2=$m2->add($data2);
+
+		    		$m3=M('company.gx');
+		    		$data3['yuserId']=$row2;
+		    		$data3['cuserId']=$row;
+		    		$data3['comId']=102;
+		    		$data3['userName']=$value['1'];
+		    		$data3['sn']=$value['0'];
+		    		$row3=$m3->add($data3);
 		    	}
 		    }
 		}
